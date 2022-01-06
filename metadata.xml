@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Boss Rush Wave Counter [Rep | AB+]</name>
+    <directory>boss rush wave counter</directory>
+    <id>2492654252</id>
+    <description>[h1]WHAT DOES IT DO?[/h1]
+This quality-of-life mod adds a wave counter similar to Greed Mode to the HUD for Boss Rush!
+
+[h1]MOD CONFIG MENU[/h1]
+This mod supports Mod Config Menu! Get it [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]here[/url] for Repentance and [url=https://steamcommunity.com/workshop/filedetails/?id=1603631350]here[/url] for Afterbirth+.
+
+With Mod Config Menu, you will be able to customise the Boss Rush Wave Counter even further by:
+[list]
+[*]Changing the RGB values in the counters text
+
+[*]Using custom presets to make moving the counter into juuuuuust the right spot even easier, and
+
+[*]Enabling a custom &quot;Boss Bar&quot; preset to put the counter right in place of the Boss HP Bar, and move it out of the way during the fight
+[/list]
+
+[h1]HOW DO I MOVE THE COUNTER?[/h1]
+[olist]
+[*]First you need to be in Boss Rush. I find the easiest way to do this is to start up any challange from the main menu since achievements are locked during challanges so you won't accidentally unlock anything. Next open the console with &quot;~&quot; and run the following commands &quot;stage 5&quot; to put you on Depths/Necropolis 1, &quot;giveitem k5&quot; to give yourself and emperor card, and &quot;debug 10&quot; so you don't have to spend time fighting any bosses. Exit the console, use the emperor card, and go to the next floor. Once on Depths/Necropolis 2, give yourself another emperor card and use it. Now you can enter the Boss Rush room.
+
+[*]When you're in the Boss Rush room, to adjust the position of the counter, hold &quot;/&quot; on your keyboard to enter Edit Mode. You'll know you're in Edit Mode when there's big red text in the middle of your screen that says &quot;Edit Mode&quot;.
+
+[*]When you're in Edit Mode, use the arrow keys on your keyboard to move the counter, and let go of &quot;/&quot; once you are happy.
+
+[*]Now the position of the counter will be saved and you can exit back to the main menu. The position of the counter can always be changed again like this as long as you are in the Boss Rush room.
+
+[*]If you ever want to reset the counter to its default position, make sure you are in the Boss Rush room, and press &quot;.&quot;
+[/olist]
+
+[h1]IMPORTANT[/h1]
+THIS MOD WORKS WITH REPENTANCE however it has only been coded and tested to work with Afterbirth+. I currently do not own a copy of Repentance to test this mod on, however it is currently compatible unless anything in the code changes. With that being said, if anything doesn't work with Repentance, I will try my hardest to fix it, but until I have a pc and a copy of the game, nothing is certain.
+
+[h1]WANT TO VIEW THE CODE?[/h1]
+Head over to the mod's official GitHub page [url=https://github.com/AaronCohen21/BossRushWaveCounter]here[/url] if you want to see how the mod works and look at the code behind it.</description>
+    <version>1.10</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Rooms"/>
+    <tag id="Enemies"/>
+    <tag id="Bosses"/>
+    <tag id="Challenges"/>
+    <tag id="Tweaks"/>
+    <tag id="Graphics"/>
+</metadata>
