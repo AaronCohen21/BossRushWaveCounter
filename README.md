@@ -10,15 +10,17 @@ This quality-of-life mod adds a wave counter similar to Greed Mode to the HUD fo
 
 # MOD CONFIG MENU
 
-This mod supports Mod Config Menu! Get it [here](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818) for Repentance and [here](https://steamcommunity.com/workshop/filedetails/?id=1603631350) for Afterbirth+.
+This mod supports Mod Config Menu! Get it [here](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)!
 
 With Mod Config Menu, you will be able to customise the Boss Rush Wave Counter even further by:
 
 - Changing the RGB values in the counters text
 
-- Using custom presets to make moving the counter into juuuuuust the right spot even easier, and
+- Using custom presets to make moving the counter into juuuuuust the right spot even easier
 
 - Enabling a custom "Boss Bar" preset to put the counter right in place of the Boss HP Bar, and move it out of the way during the fight
+
+- Using custom UI Scaling to change the counter's size
 
 # HOW DO I MOVE THE COUNTER?
 

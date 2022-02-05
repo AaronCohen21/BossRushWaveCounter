@@ -13,9 +13,11 @@ With Mod Config Menu, you will be able to customise the Boss Rush Wave Counter e
 [list]
 [*]Changing the RGB values in the counters text
 
-[*]Using custom presets to make moving the counter into juuuuuust the right spot even easier, and
+[*]Using custom presets to make moving the counter into juuuuuust the right spot even easier
 
 [*]Enabling a custom &quot;Boss Bar&quot; preset to put the counter right in place of the Boss HP Bar, and move it out of the way during the fight
+
+[*]Using custom UI Scaling to change the counter's size
 [/list]
 
 [h1]HOW DO I MOVE THE COUNTER?[/h1]
@@ -36,7 +38,7 @@ THIS MOD WORKS WITH REPENTANCE however it has only been coded and tested to work
 
 [h1]WANT TO VIEW THE CODE?[/h1]
 Head over to the mod's official GitHub page [url=https://github.com/AaronCohen21/BossRushWaveCounter]here[/url] if you want to see how the mod works and look at the code behind it.</description>
-    <version>1.10</version>
+    <version>1.11</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Rooms"/>

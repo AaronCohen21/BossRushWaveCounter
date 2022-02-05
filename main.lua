@@ -7,7 +7,7 @@ end
 
 --All code written by Aaron Cohen
 
-local version = 1.6 --change this number every time you update the mod so it will reset the saveX.dat files incase the way data handling is changed and not break the mod for previous users
+local version = 1.11 --change this number every time you update the mod so it will reset the saveX.dat files incase the way data handling is changed and not break the mod for previous users
 local isUpdated = nil
 
 local wave = 0  --this number keeps track of what boss rush wave you are on
@@ -21,6 +21,10 @@ local textR = 255
 local textG = 255
 local textB = 255
 
+local barScale = 100
+local textScale = 100
+local textNudge = 0
+
 function bossRushWaveCounter:loadData()
 	if bossRushWaveCounter:HasData()then
 		local data = json.decode(Isaac.LoadModData(bossRushWaveCounter))
@@ -31,7 +35,10 @@ function bossRushWaveCounter:loadData()
     textR = data[5]
     textG = data[6]
     textB = data[7]
-    isUpdated = data[8]  
+    barScale = data[8]
+    textScale = data[9]
+    textNudge = data[10]
+    isUpdated = data[11]
   end
 
   if isUpdated ~= version then
@@ -42,6 +49,9 @@ function bossRushWaveCounter:loadData()
     textR = 255
     textG = 255
     textB = 255
+    barScale = 100
+    textScale = 100
+    textNudge = 0
     isUpdated = version
     bossRushWaveCounter:saveData()  --if the user doesn't have an updated save file, generate a new updated save file and mark it as updated
   end
@@ -457,32 +467,36 @@ function bossRushWaveCounter.renderWave()
   if inBossRush then
     --presets: 1 = Default, 2 = Found HUD, 3 = Boss Bar
     if displayPreset == 1 then
+      waveBar.Scale = Vector(barScale/100, barScale/100)
       waveBar:Render(Vector(390 + horizontalAdjustment, 29 - verticalAdjustment), Vector(0,0), Vector(0,0))
 
       local f = Font()
       f:Load("font/terminus.fnt")
-      f:DrawStringScaled(wave.."/15",396 + horizontalAdjustment,7 - verticalAdjustment,0.7,0.7,KColor(textR/255,textG/255,textB/255,1),7,true)
+      f:DrawStringScaled(wave.."/15",390 + horizontalAdjustment + ((barScale/100)*6),29 + textNudge - verticalAdjustment - ((barScale/100)*22),0.7 * (textScale/100),0.7 * (textScale/100),KColor(textR/255,textG/255,textB/255,1),7,true)
 
     elseif displayPreset == 2 then
+      waveBar.Scale = Vector(barScale/100, barScale/100)
       waveBar:Render(Vector(29 + horizontalAdjustment, 237 - verticalAdjustment), Vector(0,0), Vector(0,0))
 
       local f = Font()
       f:Load("font/terminus.fnt")
-      f:DrawStringScaled(wave.."/15",35 + horizontalAdjustment,215 - verticalAdjustment,0.7,0.7,KColor(textR/255,textG/255,textB/255,1),7,true)
+      f:DrawStringScaled(wave.."/15",29 + horizontalAdjustment + ((barScale/100)*6),237 + textNudge - verticalAdjustment - ((barScale/100)*22),0.7 * (textScale/100),0.7 * (textScale/100),KColor(textR/255,textG/255,textB/255,1),7,true)
 
     else
       if Isaac.CountBosses() >= 1 then
+        waveBar.Scale = Vector(barScale/100, barScale/100)
         waveBar:Render(Vector(136 + horizontalAdjustment, 304 - verticalAdjustment), Vector(0,0), Vector(0,0))
 
         local f = Font()
         f:Load("font/terminus.fnt")
-        f:DrawStringScaled(wave.."/15",142 + horizontalAdjustment,282 - verticalAdjustment,0.7,0.7,KColor(textR/255,textG/255,textB/255,1),7,true)
+        f:DrawStringScaled(wave.."/15",136 + horizontalAdjustment + ((barScale/100)*6),304 + textNudge - verticalAdjustment - ((barScale/100)*22),0.7 * (textScale/100),0.7 * (textScale/100),KColor(textR/255,textG/255,textB/255,1),7,true)
       else
+        waveBar.Scale = Vector(barScale/100, barScale/100)
         waveBar:Render(Vector(posx*0.5, 304 - verticalAdjustment), Vector(0,0), Vector(0,0))
 
         local f = Font()
         f:Load("font/terminus.fnt")
-        f:DrawStringScaled(wave.."/15",posx*0.5 + 6,282 - verticalAdjustment,0.7,0.7,KColor(textR/255,textG/255,textB/255,1),7,true)
+        f:DrawStringScaled(wave.."/15",posx*0.5 + ((barScale/100)*6),304 + textNudge - verticalAdjustment - ((barScale/100)*22),0.7 * (textScale/100),0.7 * (textScale/100),KColor(textR/255,textG/255,textB/255,1),7,true)
       end
     end
   end
@@ -490,10 +504,10 @@ end
 
 function bossRushWaveCounter:saveData()
   if wave < 15 and wave ~= 0 then
-    local table= {wave-1, horizontalAdjustment, verticalAdjustment, displayPreset, textR, textG, textB, isUpdated}
+    local table= {wave-1, horizontalAdjustment, verticalAdjustment, displayPreset, textR, textG, textB, barScale, textScale, textNudge, isUpdated}
     bossRushWaveCounter.SaveData(bossRushWaveCounter, json.encode(table))
   else 
-    local table= {wave, horizontalAdjustment, verticalAdjustment, displayPreset, textR, textG, textB, isUpdated}
+    local table= {wave, horizontalAdjustment, verticalAdjustment, displayPreset, textR, textG, textB, barScale, textScale, textNudge, isUpdated}
     bossRushWaveCounter.SaveData(bossRushWaveCounter, json.encode(table))
   end
 end
@@ -596,6 +610,58 @@ if ModConfigMenu then
   })
 
   MCM.AddSpace(category)
+  MCM.AddTitle(category, "UI Scaling")
+  MCM.AddSpace(category)
+
+  MCM.AddSetting(category, {
+
+    Type = ModConfigMenu.OptionType.NUMBER,
+
+    CurrentSetting = function() return barScale end,
+
+    Minimum = 50,
+    Maximum = 200,
+
+    Display = function() return "Bar Scale : " .. barScale end,
+
+    OnChange = function(i) barScale = i end,
+
+    Info = {"Change the scale at which the Bar Sprite should be rendered"}
+  })
+
+  MCM.AddSetting(category, {
+
+    Type = ModConfigMenu.OptionType.NUMBER,
+
+    CurrentSetting = function() return textScale end,
+
+    Minimum = 50,
+    Maximum = 200,
+
+    Display = function() return "Font Scale : " .. textScale end,
+
+    OnChange = function(i) textScale = i end,
+
+    Info = {"Change the scale at which the Font should be rendered"}
+  })
+
+  MCM.AddSetting(category, {
+
+    Type = ModConfigMenu.OptionType.NUMBER,
+
+    CurrentSetting = function() return textNudge end,
+
+    Minimum = -20,
+    Maximum = 20,
+
+    Display = function() return "Vertical Adjustment : " .. textNudge end,
+
+    OnChange = function(i) textNudge = i end,
+
+    Info = {"Nudge the Counter Text up or down"}
+  })
+
+  MCM.AddSpace(category)
 
   MCM.AddSetting(category, {
 
@@ -612,6 +678,10 @@ if ModConfigMenu then
       textR = 255
       textG = 255
       textB = 255
+
+      barScale = 100
+      textScale = 100
+      textNudge = 0
 
       horizontalAdjustment = 0
       verticalAdjustment = 0
