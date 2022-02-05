@@ -101,7 +101,6 @@ local littleHorn = false
 local ragMan = false
 --Updated Boss Rush
 local conquest = false
-
 --Afterbirth+ Bosses
 local ragMega = false
 local bigHorn = false
@@ -120,74 +119,9 @@ function bossRushWaveCounter:checkBossRush()
 
     --reset stats for the counter if the player re-enters bossrush and it isn't complete
     if wave < 15 then
-      wave = 0
-      larryJr = false
-      hollow = false
-      monstro = false
-      chub = false
-      chad = false
-      carrionQueen = false
-      gurdy = false
-      monstro2 = false
-      gish = false
-      pin = false
-      frail = false
-      famine = false
-      pestilence = false
-      war = false
-      death = false
-      dukeOfFlies = false
-      theHusk = false
-      peep = false
-      bloat = false
-      loki = false
-      fistula = false
-      blastocyst = false
-      gemini = false
-      steven = false
-      blightedOvum = false
-      fallen = false
-      headlessHorseman = false
-      maskOfInfamy = false
-      gurdyJr = false
-      widow = false
-      theWretched = false
-      gurglings = false
-      turdlings = false
-      theHaunt = false
-      dingle = false
-      dangle = false
-      megaMaw = false
-      theGate =false
-      megaFatty = false
-      theCage = false
-      darkOne = false
-      theAdversary = false
-      polycephalus = false
-      uriel = false
-      gabriel = false
-      theStain = false
-      brownie = false
-      theForsaken = false
-      littleHorn = false
-      ragMan = false
-      --Detect if Updated Boss Rush Is Installed
-      if UpdatedBossRush then
-        conquest = false
-
-        --Afterbirth+ Bosses
-        ragMega = false
-        bigHorn = false
-        sisterVis = false
-        matriarch = false
-
-        --Repentance Bosses
-        babyPlum = false
-        bumbino = false
-        reapCreep = false
-        thePile = false
-      end
+      bossRushWaveCounter:resetCounter()
     end
+
   else
     inBossRush = false
   end
@@ -511,8 +445,6 @@ local function GetScreenSize() -- By Kilburn himself.
 end
 
 local posx, posy = GetScreenSize()
-
-
 
 function bossRushWaveCounter.renderWave()
   local editText = Font()
