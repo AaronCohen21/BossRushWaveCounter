@@ -117,7 +117,6 @@ bossRushWaveCounter:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc) 
                     preventCounting = true
                     break
                 end
-				print(entity.SpawnerEntity)
             end
 
             if not preventCounting then
