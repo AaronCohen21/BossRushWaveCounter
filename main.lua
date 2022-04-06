@@ -64,7 +64,7 @@ function bossRushWaveCounter:checkBossRush()
 		inBossRush = true
 
 		--reset stats for the counter if the player re-enters bossrush and it isn't complete
-		if wave < 15 then
+		if not room:IsAmbushDone() then
 			wave = 0
 		end
 
