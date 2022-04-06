@@ -104,18 +104,20 @@ function bossRushWaveCounter:update()
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc) -- Check for new waves
+bossRushWaveCounter:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc) -- Check for new waves
 	local room = Game():GetRoom()
     if inBossRush and room:IsAmbushActive() then
-        if not (npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) or npc:HasEntityFlags(EntityFlag.FLAG_PERSISTENT) or npc:HasEntityFlags(EntityFlag.FLAG_NO_TARGET)) then
+        if npc.CanShutDoors and npc:IsBoss() and not npc.SpawnerEntity
+        and not (npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) or npc:HasEntityFlags(EntityFlag.FLAG_PERSISTENT) or npc:HasEntityFlags(EntityFlag.FLAG_NO_TARGET)) then
             local preventCounting
-            for _, entity in ipairs(Isaac.FindInRadius(Vector.Zero, 9999, EntityPartition.ENEMY)) do
+            for _, entity in ipairs(Isaac.FindInRadius(room:GetCenterPos(), 1000, EntityPartition.ENEMY)) do
                 if entity:ToNPC() and entity:CanShutDoors() and entity:IsBoss()
                 and not (entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) or entity:HasEntityFlags(EntityFlag.FLAG_PERSISTENT) or entity:HasEntityFlags(EntityFlag.FLAG_NO_TARGET))
                 and entity.FrameCount ~= npc.FrameCount then
                     preventCounting = true
                     break
                 end
+				print(entity.SpawnerEntity)
             end
 
             if not preventCounting then
